@@ -1,12 +1,15 @@
 
-import ListGroup from './components/ListGroup'
 import './index.css'
 
-function App() {
+const  App =()=> {
 
   return (
     <>
-    <ListGroup />
+    <div className='flex flex-col  items-center w-screen h-screen pt-10 bg-[#fef4d6] '>
+      <span className="text-3xl font-fascinate">DoItDude</span>
+    </div>
+    
+    
     </>
   )
 }
