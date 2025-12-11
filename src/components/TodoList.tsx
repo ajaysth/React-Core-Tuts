@@ -1,7 +1,23 @@
+import type { ToDo } from "../model";
+import SingleTodo from "./SingleTodo";
 
-const TodoList = () => {
+interface Props{
+    todos: ToDo[];
+    settodos: React.Dispatch<React.SetStateAction<ToDo[]>>;
+
+}
+const TodoList = ({todos, settodos}: Props) => {
   return (
-    <div>TodoList</div>
+    <>
+    <div className="flex flex-wrap gap-2 justify-evenly w-[90%]">
+        {
+            todos.map((todo)=>(
+                <SingleTodo key={todo.id} todo={todo} todos={todos} setodos={settodos} />
+            ))
+        }
+
+    </div>
+    </>
   )
 }
 

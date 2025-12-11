@@ -23,7 +23,11 @@ const App = () => {
         </span>
         <InputField todo={todo} setTodo={setTodo} handleAdd={handleAdd} />
 
-        <TodoList />
+        <TodoList todos={todos} settodos={settodos}/>
+
+        {/* {todos.map((todo) => (
+          <div key={todo.id}>{todo.todo}</div>
+        ))} */}
       </div>
     </>
   );
