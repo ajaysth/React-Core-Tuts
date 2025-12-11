@@ -16,29 +16,40 @@ const SingleTodo = ({ todo, todos, settodos }: Props) => {
     const [edit, setEdit] = useState<boolean>(false);
     const [editTodo, setEditTodo] = useState<string>(todo.todo);
 
+    const updateTodo = (newTodos : ToDo[]) => {
+        settodos(newTodos);
+        localStorage.setItem("todos", JSON.stringify(newTodos));
+
+    }
+
 
     const handleDone = (id: number) => {
-        settodos(todos.map((todo) => todo.id === id ? { ...todo, isDone: !todo.isDone } : todo));
+        const updatedTodo = todos.map((todo) => todo.id === id ? { ...todo, isDone: !todo.isDone } : todo);
+        updateTodo(updatedTodo);
         // alert("Task done successfully!");
     }
 
     const handleDelete = (id: number) => {
-        settodos(todos.filter((todo) => todo.id !== id));
+        const updatedTodo = todos.filter((todo) => todo.id !== id);
+        updateTodo(updatedTodo);
         alert("Todo deleted successfully!");
     }
 
     const handleEdit = (e:React.FormEvent,id:number)=> {
         e.preventDefault();
-        settodos(todos.map((todo) => (
+        const updatedTodo = todos.map((todo) => (
             todo.id === id ? {...todo, todo: editTodo } : todo
-        )));
+        ));
+        updateTodo(updatedTodo);
         setEdit(false);
         alert("Todo edited successfully!");
     }
 
     const inputRef = useRef<HTMLInputElement>(null);
     useEffect(() => {
-        inputRef.current?.focus();
+        if(edit){
+            inputRef.current?.focus();
+        }
     }, [edit]);
 
 
