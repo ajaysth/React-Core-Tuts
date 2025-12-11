@@ -12,7 +12,7 @@ const TodoList = ({todos, settodos}: Props) => {
     <div className="flex flex-wrap gap-2 justify-evenly w-[90%]">
         {
             todos.map((todo)=>(
-                <SingleTodo key={todo.id} todo={todo} todos={todos} setodos={settodos} />
+                <SingleTodo key={todo.id} todo={todo} todos={todos} settodos={settodos} />
             ))
         }
 
