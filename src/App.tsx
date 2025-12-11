@@ -6,11 +6,16 @@ import TodoList from "./components/TodoList";
 
 const App = () => {
   const [todo, setTodo] = useState<string>("");
-  const [todos, settodos] = useState<ToDo[]>([])
+  const [todos, settodos] = useState<ToDo[]>(() => {
+    const storedTodos = localStorage.getItem("todos");
+    return storedTodos ? JSON.parse(storedTodos) : [];
+  });
   const handleAdd = (e: React.FormEvent) => {
     e.preventDefault();
-    if(todo){
-      settodos([...todos, {id: Date.now(), todo, isDone: false}])
+    if (todo) {
+      const newTodos = [...todos, { id: Date.now(), todo, isDone: false }];
+      settodos(newTodos);
+      localStorage.setItem("todos", JSON.stringify(newTodos));
       setTodo("");
     }
   }
@@ -23,7 +28,7 @@ const App = () => {
         </span>
         <InputField todo={todo} setTodo={setTodo} handleAdd={handleAdd} />
 
-        <TodoList todos={todos} settodos={settodos}/>
+        <TodoList todos={todos} settodos={settodos} />
 
         {/* {todos.map((todo) => (
           <div key={todo.id}>{todo.todo}</div>
