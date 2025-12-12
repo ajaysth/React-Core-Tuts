@@ -55,7 +55,7 @@ const SingleTodo = ({ todo, todos, settodos }: Props) => {
 
     return (
         <>
-            <form className=" rodosingle flex sm:w-full md:w-[48%] lg:w-[30%] rounded-md p-5 mt-3 bg-emerald-100" onSubmit={(e) => {handleEdit(e, todo.id)}}>
+            <form className=" rodosingle flex rounded-md p-5 m-3 bg-emerald-100 hover:shadow hover:shadow-black hover:scale-105 transition-transform duration-800" onSubmit={(e) => {handleEdit(e, todo.id)}}>
                 {
                     edit ? (
                         <input ref={inputRef} className=" todosingletext bg-emerald-200 sm:w-full flex-1 break-word p-1.5 text-[20px] focus:outline-none" type="text" value={editTodo} onChange={(e) => setEditTodo(e.target.value)} />
